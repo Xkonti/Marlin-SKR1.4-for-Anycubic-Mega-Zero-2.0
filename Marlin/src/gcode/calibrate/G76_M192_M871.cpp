@@ -38,7 +38,7 @@
 #include "../../feature/probe_temp_comp.h"
 
 #include "../../lcd/marlinui.h"
-#include "../../MarlinCore.h" // for wait_for_heatup, idle()
+#include "../../MarlinCore.h" // for wait_for_heatup, idle(), G28_STR
 
 #if ENABLED(PRINTJOB_TIMER_AUTOSTART)
   #include "../../module/printcounter.h"
