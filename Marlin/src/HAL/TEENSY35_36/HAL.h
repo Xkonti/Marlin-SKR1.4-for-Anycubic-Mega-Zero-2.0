@@ -53,25 +53,14 @@
   #define IS_TEENSY35 1
 #endif
 
-#include "../../core/serial_hook.h"
-
-#define Serial0 Serial
-#define _DECLARE_SERIAL(X) \
-  typedef ForwardSerial1Class<decltype(Serial##X)> DefaultSerial##X; \
-  extern DefaultSerial##X MSerial##X
-#define DECLARE_SERIAL(X) _DECLARE_SERIAL(X)
-
-typedef ForwardSerial1Class<decltype(SerialUSB)> USBSerialType;
-extern USBSerialType USBSerial;
-
-#define _MSERIAL(X) MSerial##X
+#define _MSERIAL(X) Serial##X
 #define MSERIAL(X) _MSERIAL(X)
+#define Serial0 Serial
 
 #if SERIAL_PORT == -1
-  #define MYSERIAL1 USBSerial
+  #define MYSERIAL0 SerialUSB
 #elif WITHIN(SERIAL_PORT, 0, 3)
-  #define MYSERIAL1 MSERIAL(SERIAL_PORT)
-  DECLARE_SERIAL(SERIAL_PORT);
+  #define MYSERIAL0 MSERIAL(SERIAL_PORT)
 #endif
 
 #define HAL_SERVO_LIB libServo

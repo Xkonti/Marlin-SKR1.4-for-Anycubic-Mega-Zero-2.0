@@ -48,7 +48,7 @@
   #include "stm32_def.h"
 
   #define DEBUG_OUT ENABLED(EEPROM_CHITCHAT)
-  #include "../../core/debug_out.h"
+  #include "src/core/debug_out.h"
 
   #ifndef MARLIN_EEPROM_SIZE
     #define MARLIN_EEPROM_SIZE    0x1000 // 4KB
@@ -61,9 +61,7 @@
     #define FLASH_UNIT_SIZE       0x20000 // 128kB
   #endif
 
-  #ifndef FLASH_ADDRESS_START
-    #define FLASH_ADDRESS_START   (FLASH_END - ((FLASH_SECTOR_TOTAL - (FLASH_SECTOR)) * (FLASH_UNIT_SIZE)) + 1)
-  #endif
+  #define FLASH_ADDRESS_START     (FLASH_END - ((FLASH_SECTOR_TOTAL - (FLASH_SECTOR)) * (FLASH_UNIT_SIZE)) + 1)
   #define FLASH_ADDRESS_END       (FLASH_ADDRESS_START + FLASH_UNIT_SIZE  - 1)
 
   #define EEPROM_SLOTS            ((FLASH_UNIT_SIZE) / (MARLIN_EEPROM_SIZE))
